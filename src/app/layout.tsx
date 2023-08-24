@@ -2,6 +2,7 @@ import "./styles.css"
 
 import type { ReactNode } from "react"
 
+import { Analytics } from "@vercel/analytics/react"
 import { Inter } from "next/font/google"
 
 import { about } from "@/data/about"
@@ -40,6 +41,7 @@ export default function Layout({ children }: LayoutProps) {
           {children}
           <Aside />
         </div>
+        <Analytics />
       </body>
     </html>
   )

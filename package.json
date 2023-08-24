@@ -23,6 +23,7 @@
     "@radix-ui/react-slot": "1.0.2",
     "@radix-ui/react-tooltip": "1.0.6",
     "@tabler/icons-react": "2.32.0",
+    "@vercel/analytics": "1.0.2",
     "clsx": "2.0.0",
     "cva": "npm:class-variance-authority@0.7.0",
     "encoding": "0.1.13",

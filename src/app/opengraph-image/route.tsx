@@ -7,12 +7,12 @@ export const runtime = "edge"
 // eslint-disable-next-line sort-exports/sort-exports
 export function GET(req: Request) {
   return ogImageResponse(
-    <OgImage className="flex-row items-center justify-center gap-6">
-      <div className="w-[380px] flex flex-col gap-7">
-        <span className="text-9 tracking-9 leading-[1em] font-bold flex flex-wrap">
+    <OgImage className="flex-row items-center justify-center">
+      <div className="w-[500px] flex flex-col gap-7">
+        <span className="text-[80px] tracking-9 leading-[1em] font-bold flex flex-wrap">
           Hola! I&apos;m <span className="text-accent">Kevin Wolf</span>.
         </span>
-        <div className="flex flex-col typography-4 text-dimmed">
+        <div className="flex flex-col typography-5 text-dimmed">
           <span className="flex">
             Crafting
             <span className="w-[6px]" />
@@ -26,7 +26,7 @@ export function GET(req: Request) {
         </div>
       </div>
       <div
-        className={`w-[300px] h-[300px] flex bg-[url(${siteUrl("images/about/hero.png")})] bg-[length:300px_300px]`}
+        className={`w-[400px] h-[400px] flex bg-[url(${siteUrl("images/about/hero.png")})] bg-[length:400px_400px]`}
       />
     </OgImage>,
     {

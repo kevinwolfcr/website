@@ -1,0 +1,32 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Run
+    runs-on: ubuntu-latest
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Enable corepack
+        run: corepack enable
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.15.0
+          cache: pnpm
+      - name: Run setup script
+        run: pnpm run setup
+      - name: Run validate script
+        run: pnpm turbo run validate

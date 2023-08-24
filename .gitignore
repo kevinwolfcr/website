@@ -1,0 +1,22 @@
+# Dependencies
+/node_modules
+
+# Artifacts
+/.next/
+/.turbo
+/build
+/out/
+/next-env.d.ts
+
+# Env files
+.env
+.env*.local
+
+# Vercel
+/.vercel
+
+# Misc
+/**/*.log
+/**/.DS_Store
+/tsconfig.tsbuildinfo
+.vercel

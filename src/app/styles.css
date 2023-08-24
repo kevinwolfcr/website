@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply min-h-[100dvh];
+    @apply bg-accent-1;
+    @apply antialiased typography-3 text-base selection:bg-accent-12 selection:text-accent-1;
+  }
+}

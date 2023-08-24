@@ -1,0 +1,12 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": { "outputs": [".next/**", "!.next/cache/**"] },
+    "lint:format": { "dependsOn": ["build"] },
+    "lint:style": { "dependsOn": ["build"] },
+    "lint:types": { "dependsOn": ["build"] },
+    "lint": { "dependsOn": ["lint:format", "lint:style", "lint:types"] },
+    "test": { "dependsOn": ["build"] },
+    "validate": { "dependsOn": ["build", "lint", "test"] }
+  }
+}

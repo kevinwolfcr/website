@@ -1,21 +1,36 @@
-import { Logo } from "@/components/logo"
 import { OgImage } from "@/components/og-image"
-import { about } from "@/data/about"
 import { ogImageResponse } from "@/utils/og"
 
+export const runtime = "edge"
+
+// eslint-disable-next-line sort-exports/sort-exports
 export function GET(req: Request) {
   return ogImageResponse(
-    <OgImage className="items-center justify-center gap-5 text-center">
-      <div className="w-[150px] h-[150px] rounded-full bg-base-1 flex items-center justify-center">
-        <Logo className="w-[75px] h-[100px]" />
+    <OgImage className="flex-row items-center justify-center gap-6">
+      <div className="w-[380px] flex flex-col gap-7">
+        <span className="text-9 tracking-9 leading-[1em] font-bold flex flex-wrap">
+          Hola! I&apos;m <span className="text-accent">Kevin Wolf</span>.
+        </span>
+        <div className="flex flex-col typography-4 text-dimmed">
+          <span className="flex">
+            Crafting
+            <span className="w-[6px]" />
+            <span className="text-accent">digital experiences</span>, one commit at a
+          </span>
+          <span className="flex">
+            time from
+            <span className="w-[6px]" />
+            <span className="text-accent">San José, Costa Rica</span>.
+          </span>
+        </div>
       </div>
-      <div className="flex flex-col items-center">
-        <span className="typography-5 font-semibold">{about.name}</span>
-        <span className="typography-4 text-dimmed">{about.position}</span>
-      </div>
-      <p color="base" className="typography-3 text-base w-[580px]">
-        {about.description}
-      </p>
+      <div
+        className="w-[300px] h-[300px] flex"
+        style={{
+          backgroundImage: `url(${process.env.VERCEL_URL}/images/about/hero.png)`,
+          backgroundSize: "300px 300px",
+        }}
+      />
     </OgImage>,
     {
       req,
@@ -45,5 +60,3 @@ export function GET(req: Request) {
     },
   )
 }
-
-export const runtime = "edge"

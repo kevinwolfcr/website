@@ -39,10 +39,10 @@ export async function ogImageResponse(
 
   function inlineTailwind(el: OgElement): OgElement {
     const { className, children, ...props } = el.props
-    let style: OgElement["props"]["style"] = {}
+    const style: OgElement["props"]["style"] = el.props.style || {}
 
     if (className) {
-      style = twj(className.split(" "))
+      Object.assign(style, twj(className.split(" ")))
     }
 
     return cloneElement(

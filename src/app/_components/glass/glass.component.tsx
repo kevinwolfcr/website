@@ -21,9 +21,9 @@ export function Glass() {
 
   return (
     <div className="fixed inset-0 z-10 flex pointer-events-none">
-      <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 rounded-full w-[500px] aspect-square bg-accent-5" />
-      <div className="absolute bottom-0 translate-y-1/2 left-0 -translate-x-1/2 rounded-full w-[500px] aspect-square bg-accent-5" />
-      <div className="absolute bottom-0 translate-y-1/2 right-0 translate-x-1/2 rounded-full w-[500px] aspect-square bg-accent-4" />
+      <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 rounded-full w-[250px] sm:w-[750px] aspect-square bg-accent-5" />
+      <div className="absolute bottom-0 translate-y-1/2 left-0 -translate-x-1/2 rounded-full w-[250px] sm:w-[750px] aspect-square bg-accent-5" />
+      <div className="absolute bottom-0 translate-y-1/2 right-0 translate-x-1/2 rounded-full w-[250px] sm:w-[750px] aspect-square bg-accent-5" />
       <div ref={spotlightRef} className="hidden lg:block absolute rounded-full w-[100px] aspect-square bg-accent-8" />
       <div className="absolute inset-0 bg-accent-1/50 backdrop-blur-[100px] backdrop-saturate-200" />
     </div>

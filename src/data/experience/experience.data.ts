@@ -52,14 +52,14 @@ export const experience: Experience = {
         "At Voiceflow, the driving force behind revolutionizing the development of chat and voice assistants, I took on the challenge of constructing a platform tailored for crafting conversational bots. Teaming up with the Product unit, we not only birthed innovative features but also ensured a seamless platform experience. Beyond feature development, my role encompassed rigorous code reviews and knowledge-sharing, frequently contributing to our front-end guild to foster continuous learning and tech advancement.",
     },
     {
-      id: "this-dot-labs",
+      id: "this-dot-inc",
       url: "https://thisdot.co",
       position: "Full Stack Developer",
-      company: "This Dot Labs",
+      company: "This Dot, Inc",
       startDate: "Mar 2019",
       endDate: "Jan 2021",
       description:
-        "A dynamic consultancy that specializes in crafting cutting-edge web applications. At the intersection of technology and business, ThisDotLabs brings together a diverse group of experts to drive the web forward, enabling clients to benefit from the latest web technologies and methodologies. With a commitment to promoting web standards and improving the development community, their team fosters innovation, champions best practices, and delivers solutions that drive business outcomes.",
+        "At ThisDotLabs, a forefront web application consultancy, I collaborated on high-stake projects, notably with esteemed clients like Twilio and Vix. Working within a distributed team, we constantly explored the pinnacle of web technologies to meet business demands. While I championed web standards and cutting-edge methodologies, I also played a pivotal role in delivering solutions that had profound business implications.",
     },
     {
       id: "gopato",

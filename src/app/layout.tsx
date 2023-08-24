@@ -26,6 +26,9 @@ export const metadata = mergeMetadata({
       { url: "/opengraph-image", alt: `${about.name} website image`, width: 1200, height: 630, type: "image/png" },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+  },
 })
 
 type LayoutProps = {

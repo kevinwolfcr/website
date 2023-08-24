@@ -1,4 +1,4 @@
-import { IconBrandGithub, IconBrandLinkedin, IconBrandX, IconDownload, IconMail } from "@tabler/icons-react"
+import { IconBrandGithub, IconBrandLinkedin, IconBrandX, IconMail } from "@tabler/icons-react"
 import Image from "next/image"
 
 import { Button } from "@/components/button"
@@ -6,6 +6,8 @@ import { Paper } from "@/components/paper"
 import { Tooltip } from "@/components/tooltip"
 import { about } from "@/data/about"
 import { contact } from "@/data/contact"
+
+import { HomeLink } from "../home-link"
 
 const SOCIAL_LINKS = [
   { href: `https://github.com/${contact.social.github}`, icon: IconBrandGithub, label: "GitHub" },
@@ -43,13 +45,11 @@ export function Aside() {
         <p className="typography-2 text-dimmed">{about.description}</p>
         <div className="flex-auto" />
         <div className="self-stretch flex flex-col gap-4">
-          <Button variant="secondary">
-            <IconDownload strokeWidth={1.5} className="h-[16px]" />
-            Download Résumé
-          </Button>
-          <Button>
-            <IconMail strokeWidth={1.5} className="h-[16px]" />
-            Get In Touch
+          <Button asChild>
+            <HomeLink href="/#contact">
+              <IconMail strokeWidth={1.5} className="h-[16px]" />
+              Get In Touch
+            </HomeLink>
           </Button>
         </div>
       </aside>

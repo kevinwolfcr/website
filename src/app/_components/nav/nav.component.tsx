@@ -1,11 +1,7 @@
 "use client"
 
-import type { HTMLAttributes } from "react"
-
 import * as Icons from "@tabler/icons-react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { forwardRef, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 import { Logo } from "@/components/logo"
 import { Paper } from "@/components/paper"
@@ -17,20 +13,13 @@ import { projects } from "@/data/projects"
 import { stack } from "@/data/stack"
 import { cn } from "@/utils/ui"
 
+import { HomeLink } from "../home-link"
+
 const NAV_ITEMS = [about, experience, stack, projects, contact].map(({ id, icon, label }) => ({
   href: `#${id}`,
   icon,
   label,
 }))
-
-type HomeLinkProps = HTMLAttributes<HTMLAnchorElement> & { href: string }
-
-const HomeLink = forwardRef<HTMLAnchorElement, HomeLinkProps>((props, ref) => {
-  const pathname = usePathname()
-  const Wrapper = pathname === "/" ? "a" : Link
-
-  return <Wrapper ref={ref} {...props} />
-})
 
 export function Nav() {
   const [isExpanded, setIsExpanded] = useState(false)

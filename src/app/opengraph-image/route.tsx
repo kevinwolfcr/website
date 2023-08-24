@@ -1,5 +1,6 @@
 import { OgImage } from "@/components/og-image"
 import { ogImageResponse } from "@/utils/og"
+import { siteUrl } from "@/utils/seo"
 
 export const runtime = "edge"
 
@@ -25,11 +26,7 @@ export function GET(req: Request) {
         </div>
       </div>
       <div
-        className="w-[300px] h-[300px] flex"
-        style={{
-          backgroundImage: `url(${process.env.VERCEL_URL}/images/about/hero.png)`,
-          backgroundSize: "300px 300px",
-        }}
+        className={`w-[300px] h-[300px] flex bg-[url(${siteUrl("images/about/hero.png")})] bg-[length:300px_300px]`}
       />
     </OgImage>,
     {

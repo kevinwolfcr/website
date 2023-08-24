@@ -1,1 +1,1 @@
-export { mergeMetadata } from "./seo.utils"
+export { mergeMetadata, siteUrl } from "./seo.utils"

@@ -15,3 +15,9 @@ export function mergeMetadata(metadata: Metadata): Metadata {
     },
   }
 }
+
+export function siteUrl(url: string) {
+  const vercelUrl = process.env.VERCEL_URL
+  const base = vercelUrl ? `https://${vercelUrl}` : `http://localhost:${process.env.PORT || 3000}`
+  return `${base}/${url}`
+}

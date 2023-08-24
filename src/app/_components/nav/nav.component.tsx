@@ -59,10 +59,11 @@ export function Nav() {
       )}
     >
       <div className="flex items-center justify-between">
-        <HomeLink href="/#">
+        <HomeLink href="/#" aria-label="Go to homepage">
           <Logo className="w-6" />
         </HomeLink>
         <button
+          aria-label={isExpanded ? "close menu" : "open menu"}
           className="sm:hidden w-6 h-6 flex items-center justify-center"
           onClick={() => setIsExpanded((isExpanded) => !isExpanded)}
         >
@@ -71,16 +72,13 @@ export function Nav() {
         </button>
       </div>
       <div className="flex-auto" />
-      <nav
-        role="navigation"
-        className={cn(isExpanded ? "flex" : "hidden", "sm:flex flex-col sm:items-center gap-5 sm:gap-3")}
-      >
+      <nav className={cn(isExpanded ? "flex" : "hidden", "sm:flex flex-col sm:items-center gap-5 sm:gap-3")}>
         {NAV_ITEMS.map((item, i) => (
           <Tooltip key={item.href} delay={0} side="right" content={item.label}>
             <HomeLink
               href={item.href}
-              role="menuitem"
               aria-current={item.href === activeHref || (!activeHref && i === 0) ? "page" : undefined}
+              aria-label={item.label}
               className={cn(
                 "sm:w-7 sm:h-7 rounded-md sm:hover:bg-accent-4 flex items-center sm:justify-center gap-3 sm:text-dimmed sm:hover:text-base transition-colors",
                 "sm:aria-[current=page]:bg-accent-9 sm:aria-[current=page]:text-contrast",

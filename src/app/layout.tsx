@@ -6,13 +6,14 @@ import { Analytics } from "@vercel/analytics/react"
 import { Inter } from "next/font/google"
 
 import { about } from "@/data/about"
-import { mergeMetadata } from "@/utils/seo"
+import { mergeMetadata, siteUrl } from "@/utils/seo"
 
 import { Aside } from "./_components/aside"
 import { Glass } from "./_components/glass"
 import { Nav } from "./_components/nav"
 
 export const metadata = mergeMetadata({
+  metadataBase: new URL(siteUrl("/")),
   icons: {
     icon: "/icon",
   },

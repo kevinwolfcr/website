@@ -33,6 +33,7 @@ export function Aside() {
             <Tooltip key={link.href} delay={0} side="bottom" content={link.label}>
               <a
                 href={link.href}
+                aria-label={`view ${link.label} profile`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-1 text-extradimmed hover:text-base"

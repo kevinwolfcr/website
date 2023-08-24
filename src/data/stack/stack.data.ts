@@ -32,7 +32,7 @@ export const stack: Stack = {
         { id: "sass", title: "SASS", url: "https://sass-lang.com/" },
         { id: "python", title: "Python", url: "https://www.python.org/" },
         { id: "ruby", title: "Ruby", url: "https://www.ruby-lang.org/en/" },
-        { id: "go", title: "Go", url: "https://golang.org/" },
+        { id: "go", title: "Golang", url: "https://golang.org/" },
         { id: "rust", title: "Rust", url: "https://www.rust-lang.org/" },
       ],
     },

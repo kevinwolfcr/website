@@ -13,6 +13,9 @@ import { Glass } from "./_components/glass"
 import { Nav } from "./_components/nav"
 
 export const metadata = mergeMetadata({
+  icons: {
+    icon: "/icon",
+  },
   title: {
     default: `${about.name} - ${about.position}`,
     template: `%s | ${about.name} - ${about.position}`,

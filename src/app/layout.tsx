@@ -7,6 +7,7 @@ import { Inter } from "next/font/google"
 
 import { about } from "@/data/about"
 import { mergeMetadata, siteUrl } from "@/utils/seo"
+import { cn } from "@/utils/ui"
 
 import { Aside } from "./_components/aside"
 import { Glass } from "./_components/glass"
@@ -40,8 +41,8 @@ const inter = Inter({ subsets: ["latin"] })
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <html lang="en" className={inter.className}>
-      <body className="flex flex-col sm:flex-row">
+    <html lang="en" className={cn(inter.className, "scroll-smooth")}>
+      <body className="min-h-[100dvh] bg-accent-1 flex flex-col sm:flex-row antialiased typography-3 text-base selection:bg-accent-12 selection:text-accent-1">
         <Glass />
         <Nav />
         <div className="relative z-20 flex-auto flex flex-col lg:flex-row-reverse">

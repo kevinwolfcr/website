@@ -22,6 +22,7 @@
   "dependencies": {
     "@radix-ui/react-slot": "1.0.2",
     "@radix-ui/react-tooltip": "1.0.6",
+    "@react-pdf/renderer": "3.1.12",
     "@tabler/icons-react": "2.32.0",
     "@vercel/analytics": "1.0.2",
     "clsx": "2.0.0",
@@ -41,6 +42,7 @@
     "@kevinwolfcr/eslint-config-react-nextjs": "1.0.1",
     "@kevinwolfcr/prettier-config": "1.0.1",
     "@radix-ui/colors": "2.1.0",
+    "@react-pdf/types": "2.3.3",
     "@tailwindcss/forms": "0.5.5",
     "@types/node": "20.5.4",
     "@types/react": "18.2.21",

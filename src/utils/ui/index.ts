@@ -1,1 +1,1 @@
-export { cn } from "./ui.utils"
+export { cn, createTailwindConverter } from "./ui.utils"

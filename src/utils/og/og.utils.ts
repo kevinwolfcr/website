@@ -1,10 +1,10 @@
 import type { CSSProperties, ReactElement } from "react"
-import type { TailwindConfig } from "tw-to-css"
 
 import { Parser } from "html-to-react"
 import { ImageResponse } from "next/server"
 import { Children, cloneElement, isValidElement } from "react"
-import { tailwindToCSS } from "tw-to-css"
+
+import { createTailwindConverter } from "../ui"
 
 type OgElement = ReactElement<{
   className?: string
@@ -26,15 +26,7 @@ export async function ogImageResponse(
   } = {},
 ) {
   const { renderToStaticMarkup } = await import("react-dom/server")
-
-  let twConfig = (await import("../../../tailwind.config")).default as TailwindConfig
-  twConfig = {
-    ...twConfig,
-    plugins: [...twConfig.plugins!.slice(0, 1), ...twConfig.plugins!.slice(2)],
-  }
-
-  const { twj } = tailwindToCSS({ config: twConfig })
-
+  const twj = await createTailwindConverter()
   const jsx = inlineTailwind(new Parser().parse(renderToStaticMarkup(el)) as OgElement)
 
   function inlineTailwind(el: OgElement): OgElement {

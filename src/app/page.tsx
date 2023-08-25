@@ -96,9 +96,9 @@ export default function Home() {
             className="group flex gap-5 lg:group-hover/list:opacity-50 lg:hover:!opacity-100 lg:transition-opacity"
           >
             <div className="relative">
-              <div className="bg-accent-7 group-hover:bg-accent-9 w-4 h-4 rounded-full lg:transition-colors" />
+              <div className="group-hover:bg-accent-9 w-4 h-4 rounded-full bg-accent-7 lg:transition-colors" />
               {i < experience.items.length - 1 ? (
-                <div className="absolute top-4 bottom-0 left-1/2 w-[1px] bg-base-6" />
+                <div className="absolute top-4 bottom-0 left-1/2 w-[1px] bg-accent-5" />
               ) : null}
             </div>
             <div className="flex flex-col gap-4 pb-8">

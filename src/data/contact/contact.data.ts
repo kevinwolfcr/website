@@ -10,6 +10,7 @@ type Contact = Section & {
     linkedIn: string
     cal: string
     email: string
+    website: string
   }
 }
 
@@ -26,5 +27,6 @@ export const contact: Contact = {
     linkedIn: "kevinwolfcr",
     cal: "kevinwolfcr",
     email: "hi@kevinwolf.cr",
+    website: "https://kevinwolf.cr",
   },
 }

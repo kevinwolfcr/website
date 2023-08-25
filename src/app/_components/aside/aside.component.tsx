@@ -1,4 +1,4 @@
-import { IconBrandGithub, IconBrandLinkedin, IconBrandX, IconMail } from "@tabler/icons-react"
+import { IconBrandGithub, IconBrandLinkedin, IconBrandX, IconDownload, IconMail } from "@tabler/icons-react"
 import Image from "next/image"
 
 import { Button } from "@/components/button"
@@ -46,6 +46,12 @@ export function Aside() {
         <p className="typography-2 text-dimmed">{about.description}</p>
         <div className="flex-auto" />
         <div className="self-stretch flex flex-col gap-4">
+          <Button asChild variant="secondary">
+            <a download="kevin-wolf-resume.pdf" href="/resume.pdf">
+              <IconDownload strokeWidth={1.5} className="h-[16px]" />
+              Download Résumé
+            </a>
+          </Button>
           <Button asChild>
             <HomeLink href="/#contact">
               <IconMail strokeWidth={1.5} className="h-[16px]" />

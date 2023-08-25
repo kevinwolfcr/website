@@ -40,7 +40,7 @@ export const about: About = {
 
     Being a staunch advocate for **Open Source**, my curiosity often leads me to emerging technologies, especially **Artificial Intelligence**. The technological horizon is exhilarating, and I'm ecstatic to be at its forefront. Alongside, I've teamed up with incredible talents, **mentoring** the upcoming wave of **developers**. And the driving force behind every endeavor? **Empathy**. Each project, every line of code, revolves around the people it benefits.
 
-    Beyond the screen, my world orbits around **cherished moments with my daughters**, embracing the thrill in the **boxing** ring, exploring the cosmos through my **telescope**, and indulging in unforgettable **game nights** with pals. Whether I'm at the **gym**, embarking on fresh **adventures**, or sketching out my next **tattoo**, there's always a new chapter awaiting.
+    Beyond the screen, my world orbits around **cherished moments with my daughters**, embracing the thrill in the **boxing** ring, exploring the cosmos through my **telescope**, and getting lost in the rhythm as an **electronic music DJ**. Whether I'm at the **gym**, embarking on fresh **adventures**, sketching out my next **tattoo**, or indulging in unforgettable **game nights** with pals, there's always a new chapter awaiting.
 
     Life's a whirlwind, both inside and outside the **IDE**. Together, we can craft magnificence!
   `,

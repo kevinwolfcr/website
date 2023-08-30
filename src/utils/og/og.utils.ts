@@ -83,5 +83,9 @@ export async function ogImageResponse(
           })),
         )
       : undefined,
+    headers: {
+      "cache-control":
+        process.env.NODE_ENV === "development" ? "no-cache, no-store" : "public, immutable, no-transform, max-age=3600",
+    },
   })
 }

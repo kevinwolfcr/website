@@ -9,11 +9,11 @@ import {
 } from "@tabler/icons-react"
 import { revalidatePath } from "next/cache"
 import Image from "next/image"
+import { Fragment } from "react"
 import { Resend } from "resend"
 
 import { Button } from "@/components/button"
 import { Hero } from "@/components/hero"
-import { Main } from "@/components/main"
 import { MDX } from "@/components/mdx"
 import { Paper } from "@/components/paper"
 import { Section } from "@/components/section"
@@ -72,13 +72,13 @@ async function submitContactForm(formData: FormData) {
   }
 }
 
-export default function Home() {
+export default function SiteHome() {
   const contactFormState = contactForm.getState()
 
   return (
-    <Main>
+    <Fragment>
       <Hero {...about.hero} />
-      <Section id={about.id} title={about.title} subtitle={about.subtitle} contentClassName="gap-5 text-dimmed">
+      <Section id={about.id} title={about.title} subtitle={about.subtitle}>
         <MDX source={about.content} />
       </Section>
       <Section
@@ -292,6 +292,6 @@ export default function Home() {
           ].join("\n\n")}
         />
       </footer>
-    </Main>
+    </Fragment>
   )
 }

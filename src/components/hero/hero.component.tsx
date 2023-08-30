@@ -18,6 +18,7 @@ export function Hero({ title, subtitle, imgSrc, imgAlt, ...props }: HeroProps) {
       <div className="flex flex-col gap-3 md:gap-5">
         <h1 className="typography-8 sm:typography-9 font-bold">
           <MDX
+            className="text-base"
             source={title}
             components={{
               p: ({ children }) => children,
@@ -25,15 +26,14 @@ export function Hero({ title, subtitle, imgSrc, imgAlt, ...props }: HeroProps) {
             }}
           />
         </h1>
-        <p className="typography-4 text-dimmed">
-          <MDX
-            source={subtitle}
-            components={{
-              p: ({ children }) => children,
-              strong: ({ children }) => <strong className="[font-weight:inherit] text-accent">{children}</strong>,
-            }}
-          />
-        </p>
+        <MDX
+          className="typography-4"
+          source={subtitle}
+          components={{
+            p: ({ children }) => children,
+            strong: ({ children }) => <strong className="[font-weight:inherit] text-accent">{children}</strong>,
+          }}
+        />
       </div>
     </header>
   )

@@ -7,7 +7,7 @@ import { Tooltip } from "@/components/tooltip"
 import { about } from "@/data/about"
 import { contact } from "@/data/contact"
 
-import { HomeLink } from "../home-link"
+import { SiteHomeLink } from "../site-home-link"
 
 const SOCIAL_LINKS = [
   { href: `https://github.com/${contact.social.github}`, icon: IconBrandGithub, label: "GitHub" },
@@ -15,7 +15,7 @@ const SOCIAL_LINKS = [
   { href: `https://linkedin.com/in/${contact.social.linkedIn}`, icon: IconBrandLinkedin, label: "LinkedIn" },
 ]
 
-export function Aside() {
+export function SiteAside() {
   return (
     <Paper
       asChild
@@ -53,10 +53,10 @@ export function Aside() {
             </a>
           </Button>
           <Button asChild>
-            <HomeLink href="/#contact">
+            <SiteHomeLink href="/#contact">
               <IconMail strokeWidth={1.5} className="h-[16px]" />
               Get In Touch
-            </HomeLink>
+            </SiteHomeLink>
           </Button>
         </div>
       </aside>

@@ -2,9 +2,6 @@ import { OgImage } from "@/components/og-image"
 import { ogImageResponse } from "@/utils/og"
 import { siteUrl } from "@/utils/seo"
 
-export const runtime = "edge"
-
-// eslint-disable-next-line sort-exports/sort-exports
 export function GET(req: Request) {
   return ogImageResponse(
     <OgImage className="flex-row items-center justify-center">

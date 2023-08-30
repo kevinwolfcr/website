@@ -1,4 +1,4 @@
-![Cover Image](https://kevinwolf.cr/opengraph-image)
+![Cover Image](https://kevinwolf.cr/opengraph-image?ref=20230827105500)
 
 ## Tech stack
 

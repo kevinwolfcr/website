@@ -1,10 +1,9 @@
 "use client"
 
-import * as Icons from "@tabler/icons-react"
 import { useEffect, useState } from "react"
 
 import { Logo } from "@/components/logo"
-import { Paper } from "@/components/paper"
+import { Nav } from "@/components/nav"
 import { Tooltip } from "@/components/tooltip"
 import { about } from "@/data/about"
 import { contact } from "@/data/contact"
@@ -13,7 +12,7 @@ import { projects } from "@/data/projects"
 import { stack } from "@/data/stack"
 import { cn } from "@/utils/ui"
 
-import { HomeLink } from "../home-link"
+import { SiteHomeLink } from "../site-home-link"
 
 const NAV_ITEMS = [about, experience, stack, projects, contact].map(({ id, icon, label }) => ({
   href: `#${id}`,
@@ -21,13 +20,8 @@ const NAV_ITEMS = [about, experience, stack, projects, contact].map(({ id, icon,
   label,
 }))
 
-export function Nav() {
-  const [isExpanded, setIsExpanded] = useState(false)
+export function SiteNav() {
   const [activeHref, setActiveHref] = useState<string | null>(null)
-
-  useEffect(() => {
-    window.document.body.style.overflow = isExpanded ? "hidden" : ""
-  }, [isExpanded])
 
   useEffect(() => {
     const onScroll = () => {
@@ -51,31 +45,18 @@ export function Nav() {
   }, [])
 
   return (
-    <Paper
-      shape="square"
-      className={cn(
-        "sticky top-0 sm:h-[100dvh] border-x-0 border-t-0 sm:border-b-0 sm:border-r backdrop-blur-lg flex flex-col justify-between sm:items-center p-4",
-        isExpanded && "h-[100dvh]",
-      )}
-    >
-      <div className="flex items-center justify-between">
-        <HomeLink href="/#" aria-label="Go to homepage">
+    <Nav
+      isCentered
+      header={
+        <SiteHomeLink href="/#" aria-label="Go to homepage">
           <Logo className="w-6" />
-        </HomeLink>
-        <button
-          aria-label={isExpanded ? "close menu" : "open menu"}
-          className="sm:hidden w-6 h-6 flex items-center justify-center"
-          onClick={() => setIsExpanded((isExpanded) => !isExpanded)}
-        >
-          <Icons.IconMenu2 className={cn(isExpanded && "hidden")} />
-          <Icons.IconX className={cn("hidden", isExpanded && "block")} />
-        </button>
-      </div>
-      <div className="flex-auto" />
-      <nav className={cn(isExpanded ? "flex" : "hidden", "sm:flex flex-col sm:items-center gap-5 sm:gap-3")}>
-        {NAV_ITEMS.map((item, i) => (
+        </SiteHomeLink>
+      }
+    >
+      {({ setIsExpanded }) =>
+        NAV_ITEMS.map((item, i) => (
           <Tooltip key={item.href} delay={0} side="right" content={item.label}>
-            <HomeLink
+            <SiteHomeLink
               href={item.href}
               aria-current={item.href === activeHref || (!activeHref && i === 0) ? "page" : undefined}
               aria-label={item.label}
@@ -87,11 +68,10 @@ export function Nav() {
             >
               <item.icon strokeWidth={1} />
               <span className="sm:hidden">{item.label}</span>
-            </HomeLink>
+            </SiteHomeLink>
           </Tooltip>
-        ))}
-      </nav>
-      <div className="flex-auto" />
-    </Paper>
+        ))
+      }
+    </Nav>
   )
 }

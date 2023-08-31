@@ -2,7 +2,6 @@ import type { ReactNode } from "react"
 
 import { Fragment } from "react"
 
-import { Main } from "@/components/main"
 import { about } from "@/data/about"
 import { mergeMetadata, siteUrl } from "@/utils/seo"
 
@@ -34,7 +33,7 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
     <Fragment>
       <SiteNav />
       <div className="relative z-20 flex-auto flex flex-col lg:flex-row-reverse">
-        <Main>{children}</Main>
+        {children}
         <SiteAside />
       </div>
     </Fragment>

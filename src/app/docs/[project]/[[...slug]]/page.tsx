@@ -8,7 +8,7 @@ import { Hero } from "@/components/hero"
 import { Main } from "@/components/main"
 import { MDX } from "@/components/mdx"
 import { PackageManagerCommandProvider } from "@/components/mdx/package-manager-command"
-import { getDocs, getDocsParams } from "@/data/docs"
+import { getDocsConfig, getDocsPage, getDocsParams } from "@/data/docs"
 import { mergeMetadata, siteUrl } from "@/utils/seo"
 
 import { DocsNav } from "./_components/docs-nav"
@@ -21,15 +21,13 @@ export async function generateStaticParams(): Promise<DocsPageProps["params"][]>
   return await getDocsParams()
 }
 
-export const revalidate = 3600
-
 // eslint-disable-next-line sort-exports/sort-exports
 export async function generateMetadata({ params: { project, slug = [] } }: DocsPageProps) {
-  const docs = await getDocs(project)
+  const docs = await getDocsConfig(project)
   if (!docs) return {}
 
   const path = slug.join("/") || ""
-  const page = docs.pages[path]
+  const page = await getDocsPage(project, slug)
   if (!page) return {}
 
   const metadataBase = new URL(siteUrl())
@@ -66,39 +64,27 @@ async function handlePackageManagerChange(packageManager: PackageManager) {
 }
 
 export default async function DocsPage({ params: { project, slug = [] } }: DocsPageProps) {
-  const docs = await getDocs(project)
-  if (!docs) notFound()
+  const config = await getDocsConfig(project)
+  if (!config) notFound()
 
-  const page = docs.pages[slug.join("/")]
+  const page = await getDocsPage(project, slug)
   if (!page) notFound()
 
   return (
     <Fragment>
-      <DocsNav docs={docs} />
+      <DocsNav title={config.title} repo={config.repo} menus={config.menus} />
       <Main className="relative z-20">
+        <Hero
+          title={page.meta.title || config.title}
+          subtitle={page.meta.description || config.description}
+          imgSrc={page.meta.imgSrc ? new URL(page.meta.imgSrc, page.url).toString() : undefined}
+          imgAlt={page.meta.imgAlt}
+        />
         <PackageManagerCommandProvider
           initialValue={(cookies().get("packageManager")?.value || "pnpm") as PackageManager}
           onValueChange={handlePackageManagerChange}
         >
-          <article className="flex flex-col gap-6">
-            {page.meta.imgSrc && page.meta.imgAlt ? (
-              <Hero
-                title={page.meta.title || docs.title}
-                subtitle={page.meta.description || docs.description}
-                imgSrc={new URL(page.meta.imgSrc, page.url).toString()}
-                imgAlt={page.meta.imgAlt}
-              />
-            ) : (
-              <Fragment>
-                <header className="flex flex-col gap-1">
-                  <h1 className="typography-8 font-bold">{page.meta.title || docs.title}</h1>
-                  <p className="typography-4 text-dimmed">{page.meta.description || docs.description}</p>
-                </header>
-              </Fragment>
-            )}
-
-            <MDX source={page.content} />
-          </article>
+          <MDX source={page.content} />
         </PackageManagerCommandProvider>
       </Main>
     </Fragment>

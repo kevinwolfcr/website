@@ -1,2 +1,1 @@
-export type { Docs } from "./docs.data"
-export { getDocs, getDocsParams } from "./docs.data"
+export { getDocsConfig, getDocsPage, getDocsParams } from "./docs.data"

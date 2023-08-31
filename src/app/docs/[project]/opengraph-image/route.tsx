@@ -1,14 +1,13 @@
 import { OgImage } from "@/components/og-image"
-import { getDocs } from "@/data/docs"
+import { getDocsConfig, getDocsPage } from "@/data/docs"
 import { ogImageResponse } from "@/utils/og"
 
 export async function GET(req: Request, { params: { project } }: { params: { project: string } }) {
   try {
-    const docs = await getDocs(project)
+    const docs = await getDocsConfig(project)
     if (!docs) throw new Error(`Docs not found for project: ${project}`)
 
-    const path = new URL(req.url).searchParams.get("path") || ""
-    const page = docs.pages[path]
+    const page = await getDocsPage(project, (new URL(req.url).searchParams.get("path") || "").split("/"))
     if (!page || !page.meta.imgSrc || !page.meta.imgAlt) throw new Error(`Can not handle path.`)
 
     return ogImageResponse(

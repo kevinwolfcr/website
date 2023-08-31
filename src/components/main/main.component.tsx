@@ -7,10 +7,7 @@ export type MainProps = HTMLAttributes<HTMLDivElement>
 export function Main({ className, ...props }: MainProps) {
   return (
     <main
-      className={cn(
-        "[grid-area:_main] mx-auto w-full max-w-[800px] flex flex-col px-7 py-9 gap-9 sm:gap-10",
-        className,
-      )}
+      className={cn("[grid-area:_main] mx-auto w-full max-w-[800px] flex flex-col px-7 py-9 gap-6", className)}
       {...props}
     />
   )

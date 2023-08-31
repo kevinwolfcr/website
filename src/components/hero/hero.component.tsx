@@ -7,16 +7,18 @@ import { MDX } from "../mdx"
 export type HeroProps = HTMLAttributes<HTMLElement> & {
   title: string
   subtitle: string
-  imgSrc: string
-  imgAlt: string
+  imgSrc?: string
+  imgAlt?: string
 }
 
 export function Hero({ title, subtitle, imgSrc, imgAlt, ...props }: HeroProps) {
   return (
-    <header className="flex flex-col md:flex-row-reverse items-center gap-5 md:px-2" {...props}>
-      <Image priority src={imgSrc} alt={imgAlt} width={300} height={300} className="flex-shrink-0" />
-      <div className="flex flex-col gap-3 md:gap-5">
-        <h1 className="typography-8 sm:typography-9 font-bold">
+    <header className="flex flex-col md:flex-row-reverse items-center gap-5" {...props}>
+      {imgSrc && imgAlt ? (
+        <Image priority src={imgSrc} alt={imgAlt} width={300} height={300} className="flex-shrink-0" />
+      ) : null}
+      <div className="flex-auto flex flex-col gap-3">
+        <h1 className="typography-8 font-bold">
           <MDX
             className="text-base"
             source={title}

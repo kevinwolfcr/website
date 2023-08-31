@@ -21,7 +21,7 @@ export async function generateStaticParams(): Promise<DocsPageProps["params"][]>
   return await getDocsParams()
 }
 
-export const revalidate = 10
+export const revalidate = 3600
 
 // eslint-disable-next-line sort-exports/sort-exports
 export async function generateMetadata({ params: { project, slug = [] } }: DocsPageProps) {

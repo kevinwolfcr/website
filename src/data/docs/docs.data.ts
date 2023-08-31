@@ -29,19 +29,16 @@ const pageMetaSchema = z.object({
   imgAlt: z.string().optional(),
 })
 
-export async function getDocs(projectId: string) {
-  const project = projects.find((project) => project.id === projectId)
-  if (!project) return null
-
-  const getFile = async (url: URL) => {
-    try {
-      const request = await fetch(url)
-      return await request.text()
-    } catch (err) {
-      throw new Error(`Error fetching ${url.toString()}: ${err instanceof Error ? err.message : "Unknown error"}`)
-    }
+async function getFile(url: URL) {
+  try {
+    const request = await fetch(url)
+    return await request.text()
+  } catch (err) {
+    throw new Error(`Error fetching ${url.toString()}: ${err instanceof Error ? err.message : "Unknown error"}`)
   }
+}
 
+async function getConfig(project: Project) {
   const baseUrl = new URL(
     process.env.LOCAL_DOCS
       ? `${process.env.LOCAL_DOCS}/${project.repo}/docs/`
@@ -51,6 +48,17 @@ export async function getDocs(projectId: string) {
   const configUrl = new URL("./config.json", baseUrl)
   const config = projectConfigSchema.parse(JSON.parse(await getFile(configUrl)))
 
+  return {
+    configUrl,
+    ...config,
+  }
+}
+
+export async function getDocs(projectId: string) {
+  const project = projects.find((project) => project.id === projectId)
+  if (!project) return null
+
+  const { configUrl, ...config } = await getConfig(project)
   const pages: Record<string, { url: string; meta: z.infer<typeof pageMetaSchema>; content: string }> = {}
 
   for (const menu of config.menus) {
@@ -77,7 +85,7 @@ export async function getDocsParams() {
   const params: { project: string; slug: string[] }[] = []
 
   for (const project of projects) {
-    for (const menu of (await getDocs(project.id))?.menus || []) {
+    for (const menu of (await getConfig(project)).menus || []) {
       for (const item of menu.items) {
         params.push({ project: project.id, slug: menu.href.concat(item.href).replace(/^\//, "").split("/") })
       }

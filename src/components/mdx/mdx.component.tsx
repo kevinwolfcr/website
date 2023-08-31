@@ -1,6 +1,6 @@
 import type { PackageManager } from "@/components/mdx/package-manager-command"
 import type { MDXRemoteProps } from "next-mdx-remote/rsc"
-import type { HTMLAttributes, ReactElement } from "react"
+import type { ComponentProps, HTMLAttributes, ReactElement } from "react"
 
 import { IconExternalLink } from "@tabler/icons-react"
 import { Code } from "bright"
@@ -9,6 +9,7 @@ import { MDXRemote } from "next-mdx-remote/rsc"
 
 import { cn } from "@/utils/ui"
 
+import theme from "./mdx.theme.json"
 import { PackageManagerCommand } from "./package-manager-command"
 
 export type MDXProps = MDXRemoteProps & {
@@ -92,8 +93,8 @@ export function MDX({ className, components, ...props }: MDXProps) {
 
             return (
               <Code
-                theme="github-dark"
-                className="!m-0 !mt-5 border border-accent-5"
+                theme={theme as ComponentProps<typeof Code>["theme"]}
+                className="!m-0 !mt-5 border border-base-6"
                 codeClassName="max-h-[420px] typography-2"
               >
                 <code className={className}>{children}</code>

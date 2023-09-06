@@ -17,7 +17,8 @@
     "start": "next start",
     "clean": "rm -rf .next .turbo node_modules",
     "reset": "pnpm run clean && rm -rf .env pnpm-lock.yaml && pnpm run setup",
-    "upgrade-deps": "pnpm update --interactive --recursive --latest"
+    "upgrade-deps": "pnpm update --interactive --recursive --latest",
+    "pre-commit": "nano-staged"
   },
   "dependencies": {
     "@radix-ui/react-slot": "1.0.2",
@@ -75,7 +76,7 @@
     "extends": "@kevinwolfcr/react-nextjs"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm nano-staged && pnpm turbo validate"
+    "pre-commit": "pnpm run pre-commit"
   },
   "nano-staged": {
     "*.{json,md,yaml,yml}": "prettier --write",

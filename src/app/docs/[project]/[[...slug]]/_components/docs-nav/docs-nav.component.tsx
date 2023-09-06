@@ -38,12 +38,12 @@ export function DocsNav({ title, repo, menus }: DocsNavProps) {
           </Tooltip>
         </div>
       }
-      navClassName="w-full border-t border-base-6/50 px-4 py-5 sm:gap-5"
+      navClassName="w-full border-t border-base-6/50 px-4 py-5"
     >
       {({ setIsExpanded }) =>
         menus.map((menu) => (
-          <div key={menu.href} className="w-full flex flex-col gap-2 mb-3">
-            <h4 className="typography-2 font-medium">{menu.label}</h4>
+          <div key={menu.href} className="w-full flex flex-col mb-3">
+            <h4 className="mb-1 typography-2 font-medium">{menu.label}</h4>
             {menu.items.map((item) => {
               const href = menu.href.concat(item.href)
 
@@ -53,7 +53,7 @@ export function DocsNav({ title, repo, menus }: DocsNavProps) {
                   href={href}
                   aria-current={href === pathname ? "page" : undefined}
                   aria-label={item.label}
-                  className="typography-2 text-dimmed hover:text-base aria-[current=page]:text-accent transition-colors"
+                  className="border-l border-base-6 aria-[current=page]:border-accent-8 typography-2 text-dimmed hover:text-base aria-[current=page]:text-base aria-[current=page]:font-medium py-1 pl-3 transition-colors"
                   onClick={() => setIsExpanded(false)}
                 >
                   {item.label}

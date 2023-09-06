@@ -47,7 +47,7 @@ export function Nav({ isCentered, className, headerClassName, header, navClassNa
           {header}
           <button
             aria-label={isExpanded ? "close menu" : "open menu"}
-            className="sm:hidden w-6 h-6 flex items-center justify-center"
+            className="sm:hidden w-6 h-6 flex items-center justify-center text-extradimmed"
             onClick={() => setIsExpanded((isExpanded) => !isExpanded)}
           >
             <IconMenu2 className={cn(isExpanded && "hidden")} />

@@ -62,7 +62,7 @@ export default async function DocsPage({ params: { project, slug = [] } }: DocsP
 
   return (
     <Fragment>
-      <DocsNav title={config.title} repo={config.repo} menus={config.menus} />
+      <DocsNav title={config.title} repo={config.repo} slug={`/${slug.join("/")}`} menus={config.menus} />
       <Main className="relative z-20">
         <Hero
           title={page.meta.title || config.title}

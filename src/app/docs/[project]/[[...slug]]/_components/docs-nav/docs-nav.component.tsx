@@ -4,7 +4,6 @@ import type { getDocsConfig } from "@/data/docs"
 
 import { IconBrandGithub } from "@tabler/icons-react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
 
 import { Nav } from "@/components/nav"
 import { Tooltip } from "@/components/tooltip"
@@ -12,12 +11,11 @@ import { Tooltip } from "@/components/tooltip"
 export type DocsNavProps = {
   title: string
   repo: string
+  slug: string
   menus: NonNullable<Awaited<ReturnType<typeof getDocsConfig>>>["menus"]
 }
 
-export function DocsNav({ title, repo, menus }: DocsNavProps) {
-  const pathname = usePathname()
-
+export function DocsNav({ title, repo, slug, menus }: DocsNavProps) {
   return (
     <Nav
       className="sm:w-[280px] sm:flex-shrink-0 sm:justify-start sm:items-start p-0 gap-0"
@@ -51,7 +49,7 @@ export function DocsNav({ title, repo, menus }: DocsNavProps) {
                 <Link
                   key={item.href}
                   href={href}
-                  aria-current={href === pathname ? "page" : undefined}
+                  aria-current={href === slug ? "page" : undefined}
                   aria-label={item.label}
                   className="border-l border-base-6 aria-[current=page]:border-accent-8 typography-2 text-dimmed hover:text-base aria-[current=page]:text-base aria-[current=page]:font-medium py-1 pl-3 transition-colors"
                   onClick={() => setIsExpanded(false)}

@@ -62,8 +62,6 @@ export async function getDocsParams() {
     }
   }
 
-  console.log("params", params)
-
   return params
 }
 

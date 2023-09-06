@@ -83,7 +83,7 @@ export function MDX({ className, components, ...props }: MDXProps) {
             )
           },
           ul: ({ children, ...props }) => (
-            <ul className="mt-5 pl-[1em] list-disc" {...props}>
+            <ul className="mt-5 flex flex-col gap-1 pl-[1em] list-disc" {...props}>
               {children}
             </ul>
           ),

@@ -1,3 +1,5 @@
+import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Fragment } from "react"
 
@@ -6,6 +8,7 @@ import { Main } from "@/components/main"
 import { MDX } from "@/components/mdx"
 import { getDocsConfig, getDocsPage, getDocsParams } from "@/data/docs"
 import { mergeMetadata, siteUrl } from "@/utils/seo"
+import { cn } from "@/utils/ui"
 
 import { DocsNav } from "./_components/docs-nav"
 
@@ -71,7 +74,30 @@ export default async function DocsPage({ params: { project, slug = [] } }: DocsP
           imgAlt={page.meta.imgAlt}
         />
         <MDX source={page.content} />
+        <hr className="my-6 border-base-6" />
+        <div className="flex justify-between">
+          {page.prev ? <PageLink direction="prev" {...page.prev} /> : <div />}
+          {page.next ? <PageLink direction="next" {...page.next} /> : <div />}
+        </div>
       </Main>
     </Fragment>
+  )
+}
+
+function PageLink({ direction, href, label }: { direction: "prev" | "next"; href: string; label: string }) {
+  return (
+    <Link
+      href={href}
+      className={cn("flex flex-col group relative justify-center", direction === "prev" ? "text-left" : "text-right")}
+    >
+      {direction === "prev" ? (
+        <IconChevronLeft className="absolute hidden lg:block -translate-x-full group-hover:-translate-x-[150%] text-extradimmed opacity-0 group-hover:opacity-100 transition-all will-change-transform" />
+      ) : null}
+      <span className="typography-2 text-dimmed">{direction === "prev" ? "Previous" : "Next"}</span>
+      <span className="text-base group-hover:text-accent transition-colors">{label}</span>
+      {direction === "next" ? (
+        <IconChevronRight className="absolute right-0 hidden lg:block translate-x-full group-hover:translate-x-[150%] text-extradimmed opacity-0 group-hover:opacity-100 transition-all will-change-transform" />
+      ) : null}
+    </Link>
   )
 }

@@ -5,7 +5,7 @@ const projects = [{ id: "devtools", repo: "kevinwolfcr/devtools" }]
 
 async function getFile(url: URL) {
   try {
-    const request = await fetch(url, { next: { revalidate: 60 } })
+    const request = await fetch(url, { next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 60 } })
     return await request.text()
   } catch (err) {
     throw new Error(`Error fetching ${url.toString()}: ${err instanceof Error ? err.message : "Unknown error"}`)
@@ -27,7 +27,6 @@ export async function getDocsConfig(projectId: string) {
     description: z.string(),
     menus: z.array(
       z.object({
-        href: z.string(),
         label: z.string(),
         items: z.array(z.object({ href: z.string(), label: z.string(), file: z.string() })),
       }),
@@ -35,11 +34,23 @@ export async function getDocsConfig(projectId: string) {
   })
 
   const config = projectConfigSchema.parse(JSON.parse(await getFile(new URL("./config.json", baseUrl))))
-  const pages: Record<string, URL> = {}
 
-  for (const menu of config.menus) {
-    for (const item of menu.items) {
-      pages[menu.href.concat(item.href).replace(/^\//, "")] = new URL(item.file, baseUrl)
+  const pages: Record<
+    string,
+    {
+      url: URL
+      prev: z.infer<typeof projectConfigSchema>["menus"][number]["items"][number] | null
+      next: z.infer<typeof projectConfigSchema>["menus"][number]["items"][number] | null
+    }
+  > = {}
+
+  for (const [menuIndex, menu] of config.menus.entries()) {
+    for (const [itemIndex, item] of menu.items.entries()) {
+      pages[item.href] = {
+        url: new URL(item.file, baseUrl),
+        prev: menu.items[itemIndex - 1] || config.menus[menuIndex - 1]?.items.findLast(Boolean) || null,
+        next: menu.items[itemIndex + 1] || config.menus[menuIndex + 1]?.items[0] || null,
+      }
     }
   }
 
@@ -57,7 +68,7 @@ export async function getDocsParams() {
   for (const project of projects) {
     for (const menu of (await getDocsConfig(project.id))?.menus || []) {
       for (const item of menu.items) {
-        params.push({ project: project.id, slug: menu.href.concat(item.href).replace(/^\//, "").split("/") })
+        params.push({ project: project.id, slug: item.href.split("/").filter(Boolean) })
       }
     }
   }
@@ -70,10 +81,10 @@ export async function getDocsPage(projectId: string, slug: string[]) {
   const config = await getDocsConfig(projectId)
   if (!config) return null
 
-  const url = config.pages[slug.join("/")]
-  if (!url) return null
+  const page = config.pages[`/${slug.join("/")}`]
+  if (!page) return null
 
-  const { data, content } = matter(await getFile(url))
+  const { data, content } = matter(await getFile(page.url))
 
   const pageMetaSchema = z.object({
     title: z.string().optional(),
@@ -83,8 +94,10 @@ export async function getDocsPage(projectId: string, slug: string[]) {
   })
 
   return {
-    url,
+    url: page.url,
     meta: pageMetaSchema.parse(data),
     content,
+    prev: page.prev,
+    next: page.next,
   }
 }

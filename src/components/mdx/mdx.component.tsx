@@ -28,7 +28,7 @@ export function MDX({ className, components, ...props }: MDXProps) {
             </h1>
           ),
           h2: ({ children, ...props }) => (
-            <h2 className="mt-7 border-b border-base-6 pb-2 typography-7 text-base font-semibold" {...props}>
+            <h2 className="mt-7 typography-7 text-base font-semibold" {...props}>
               {children}
             </h2>
           ),

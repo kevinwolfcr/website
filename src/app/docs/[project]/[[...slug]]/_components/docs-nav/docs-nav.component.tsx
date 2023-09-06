@@ -40,16 +40,14 @@ export function DocsNav({ title, repo, slug, menus }: DocsNavProps) {
     >
       {({ setIsExpanded }) =>
         menus.map((menu) => (
-          <div key={menu.href} className="w-full flex flex-col mb-3">
+          <div key={menu.label} className="w-full flex flex-col mb-3">
             <h4 className="mb-1 typography-2 font-medium">{menu.label}</h4>
             {menu.items.map((item) => {
-              const href = menu.href.concat(item.href)
-
               return (
                 <Link
                   key={item.href}
-                  href={href}
-                  aria-current={href === slug ? "page" : undefined}
+                  href={item.href}
+                  aria-current={item.href === slug ? "page" : undefined}
                   aria-label={item.label}
                   className="border-l border-base-6 aria-[current=page]:border-accent-8 typography-2 text-dimmed hover:text-base aria-[current=page]:text-base aria-[current=page]:font-medium py-1 pl-3 transition-colors"
                   onClick={() => setIsExpanded(false)}

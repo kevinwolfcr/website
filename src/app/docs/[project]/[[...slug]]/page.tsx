@@ -1,14 +1,10 @@
-import type { PackageManager } from "@/components/mdx/package-manager-command"
-
-import { cookies } from "next/headers"
 import { notFound } from "next/navigation"
 import { Fragment } from "react"
 
 import { Hero } from "@/components/hero"
 import { Main } from "@/components/main"
 import { MDX } from "@/components/mdx"
-import { PackageManagerCommandProvider } from "@/components/mdx/package-manager-command"
-import { getDocsConfig, getDocsPage, getDocsParams } from "@/data/docs"
+import { getDocsConfig, getDocsPage } from "@/data/docs"
 import { mergeMetadata, siteUrl } from "@/utils/seo"
 
 import { DocsNav } from "./_components/docs-nav"
@@ -17,9 +13,7 @@ type DocsPageProps = {
   params: { project: string; slug: string[] }
 }
 
-export async function generateStaticParams(): Promise<DocsPageProps["params"][]> {
-  return await getDocsParams()
-}
+export const revalidate = 60
 
 // eslint-disable-next-line sort-exports/sort-exports
 export async function generateMetadata({ params: { project, slug = [] } }: DocsPageProps) {
@@ -57,12 +51,6 @@ export async function generateMetadata({ params: { project, slug = [] } }: DocsP
   })
 }
 
-// eslint-disable-next-line @typescript-eslint/require-await
-async function handlePackageManagerChange(packageManager: PackageManager) {
-  "use server"
-  cookies().set("packageManager", packageManager)
-}
-
 export default async function DocsPage({ params: { project, slug = [] } }: DocsPageProps) {
   const config = await getDocsConfig(project)
   if (!config) notFound()
@@ -80,12 +68,7 @@ export default async function DocsPage({ params: { project, slug = [] } }: DocsP
           imgSrc={page.meta.imgSrc ? new URL(page.meta.imgSrc, page.url).toString() : undefined}
           imgAlt={page.meta.imgAlt}
         />
-        <PackageManagerCommandProvider
-          initialValue={(cookies().get("packageManager")?.value || "pnpm") as PackageManager}
-          onValueChange={handlePackageManagerChange}
-        >
-          <MDX source={page.content} />
-        </PackageManagerCommandProvider>
+        <MDX source={page.content} />
       </Main>
     </Fragment>
   )

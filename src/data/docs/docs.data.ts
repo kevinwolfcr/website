@@ -3,9 +3,9 @@ import { z } from "zod"
 
 const projects = [{ id: "devtools", repo: "kevinwolfcr/devtools" }]
 
-async function getFile(url: URL, projectId: string) {
+async function getFile(url: URL) {
   try {
-    const request = await fetch(url, { next: { tags: [`docs:${projectId}`] } })
+    const request = await fetch(url)
     return await request.text()
   } catch (err) {
     throw new Error(`Error fetching ${url.toString()}: ${err instanceof Error ? err.message : "Unknown error"}`)
@@ -34,7 +34,7 @@ export async function getDocsConfig(projectId: string) {
     ),
   })
 
-  const config = projectConfigSchema.parse(JSON.parse(await getFile(new URL("./config.json", baseUrl), projectId)))
+  const config = projectConfigSchema.parse(JSON.parse(await getFile(new URL("./config.json", baseUrl))))
   const pages: Record<string, URL> = {}
 
   for (const menu of config.menus) {
@@ -51,20 +51,6 @@ export async function getDocsConfig(projectId: string) {
   }
 }
 
-export async function getDocsParams() {
-  const params: { project: string; slug: string[] }[] = []
-
-  for (const project of projects) {
-    for (const menu of (await getDocsConfig(project.id))?.menus || []) {
-      for (const item of menu.items) {
-        params.push({ project: project.id, slug: menu.href.concat(item.href).replace(/^\//, "").split("/") })
-      }
-    }
-  }
-
-  return params
-}
-
 // eslint-disable-next-line sort-exports/sort-exports
 export async function getDocsPage(projectId: string, slug: string[]) {
   const config = await getDocsConfig(projectId)
@@ -73,7 +59,7 @@ export async function getDocsPage(projectId: string, slug: string[]) {
   const url = config.pages[slug.join("/")]
   if (!url) return null
 
-  const { data, content } = matter(await getFile(url, projectId))
+  const { data, content } = matter(await getFile(url))
 
   const pageMetaSchema = z.object({
     title: z.string().optional(),

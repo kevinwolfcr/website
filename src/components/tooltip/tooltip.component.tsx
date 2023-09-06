@@ -22,7 +22,7 @@ export function Tooltip({ delay = 0, sideOffset = 4, content, className, childre
           sideOffset={sideOffset}
           className={cn(
             "animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-            "border border-accent-6 bg-accent-3 text-[12px] text-base font-medium leading-[1] select-none rounded-[4px] px-[8px] py-[4px] will-change-[transform,opacity]",
+            "bg-base-12 text-[12px] text-base-1 font-medium leading-[1] select-none rounded px-[8px] py-[4px] will-change-[transform,opacity]",
             className,
           )}
           {...props}

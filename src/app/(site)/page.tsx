@@ -77,7 +77,7 @@ export default function SiteHome() {
 
   return (
     <Main className="gap-9 sm:gap-10">
-      <Hero {...about.hero} />
+      <Hero isBig {...about.hero} />
       <Section id={about.id} title={about.title} subtitle={about.subtitle}>
         <MDX source={about.content} />
       </Section>
@@ -96,9 +96,9 @@ export default function SiteHome() {
             className="group flex gap-5 lg:group-hover/list:opacity-50 lg:hover:!opacity-100 lg:transition-opacity"
           >
             <div className="relative">
-              <div className="group-hover:bg-accent-9 w-4 h-4 rounded-full bg-accent-7 lg:transition-colors" />
+              <div className="w-4 h-4 rounded-full bg-accent-8 group-hover:bg-accent-9 lg:transition-colors" />
               {i < experience.items.length - 1 ? (
-                <div className="absolute top-4 bottom-0 left-1/2 w-[1px] bg-accent-5" />
+                <div className="absolute top-4 bottom-0 left-1/2 w-[1px] bg-base-6" />
               ) : null}
             </div>
             <div className="flex flex-col gap-4 pb-8">
@@ -110,9 +110,7 @@ export default function SiteHome() {
                   {item.position} @ {item.company}
                 </h3>
               </div>
-              <div className="typography-2 text-dimmed">
-                <MDX source={item.description} />
-              </div>
+              <MDX className="typography-2" source={item.description} />
             </div>
           </a>
         ))}
@@ -149,13 +147,15 @@ export default function SiteHome() {
                 >
                   <Paper className="absolute -z-10 -inset-5 opacity-0 lg:group-hover:opacity-100 lg:transition-opacity" />
                   {item.imgSrc && item.imgAlt ? (
-                    <Image
-                      src={item.imgSrc}
-                      alt={item.imgAlt}
-                      width={150}
-                      height={90}
-                      className="flex-shrink-0 rounded-md border-2 border-base-6 group-hover:border-accent-8 transition-colors"
-                    />
+                    <div className="relative flex-shrink-0 rounded border-2 border-base-6 group-hover:border-accent-8 transition-colors overflow-hidden">
+                      <Image
+                        src={item.imgSrc}
+                        alt={item.imgAlt}
+                        width={150}
+                        height={90}
+                        className="group-hover:scale-110 transition-transform will-change-transform"
+                      />
+                    </div>
                   ) : null}
                   <div className="flex flex-col gap-3">
                     <a
@@ -213,7 +213,7 @@ export default function SiteHome() {
         {contactFormState.status === "success" || contactFormState.status === "error" ? (
           <div
             className={cn(
-              "rounded-md border flex items-center gap-4 p-4 typography-2 font-medium",
+              "rounded border flex items-center gap-4 p-4 typography-2 font-medium",
               contactFormState.status === "error" && "bg-error-2 border-error-6 text-error-11",
               contactFormState.status === "success" && "bg-success-2 border-success-6 text-success-11",
             )}
@@ -239,7 +239,7 @@ export default function SiteHome() {
               type="text"
               id="name"
               name="name"
-              className="form-input rounded-md border-none bg-accent-3 hover:bg-accent-4 focus:bg-accent-5 focus:ring-accent-7 transition-colors"
+              className="rounded border border-base-7 hover:border-base-8 focus:ring-0 focus:outline-none focus:border-accent-9 bg-base-3 transition-colors"
             />
           </div>
           <div className="[grid-area:email] flex flex-col gap-2">
@@ -251,7 +251,7 @@ export default function SiteHome() {
               type="email"
               id="email"
               name="email"
-              className="form-input rounded-md border-none bg-accent-3 hover:bg-accent-4 focus:bg-accent-5 focus:ring-accent-7 transition-colors"
+              className="rounded border border-base-7 hover:border-base-8 focus:ring-0 focus:outline-none focus:border-accent-9 bg-base-3 transition-colors"
             />
           </div>
           <div className="[grid-area:subject] flex flex-col gap-2">
@@ -263,7 +263,7 @@ export default function SiteHome() {
               type="text"
               id="subject"
               name="subject"
-              className="form-input rounded-md border-none bg-accent-3 hover:bg-accent-4 focus:bg-accent-5 focus:ring-accent-7 transition-colors"
+              className="rounded border border-base-7 hover:border-base-8 focus:ring-0 focus:outline-none focus:border-accent-9 bg-base-3 transition-colors"
             />
           </div>
           <div className="[grid-area:message] flex flex-col gap-2">
@@ -275,7 +275,7 @@ export default function SiteHome() {
               id="message"
               name="message"
               rows={7}
-              className="form-textarea rounded-md border-none bg-accent-3 hover:bg-accent-4 focus:bg-accent-5 focus:ring-accent-7 resize-none transition-colors"
+              className="rounded border border-base-7 hover:border-base-8 focus:ring-0 focus:outline-none focus:border-accent-9 bg-base-3 transition-colors resize-none"
             />
           </div>
           <Button className="[grid-area:button]">
@@ -284,7 +284,7 @@ export default function SiteHome() {
           </Button>
         </form>
       </Section>
-      <footer className="border-t border-base-6/50 flex flex-col gap-1 pt-4 typography-2 text-dimmed">
+      <footer className="border-t border-base-6/50 flex flex-col gap-2 pt-8 sm:pt-9 typography-2 text-dimmed">
         <MDX
           source={[
             "Built with [Next.js](https://nextjs.org) and [TailwindCSS](https://tailwindcss.com), deployed in [Vercel](https://vercel.com).",

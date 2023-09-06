@@ -17,7 +17,7 @@ export function Tabs({ className, content, ...props }: TabsProps) {
           <TabsPrimitive.Trigger
             key={value}
             value={value}
-            className="rounded bg-accent-3 hover:bg-accent-4 data-[state=active]:bg-accent-5 px-4 py-2 typography-2 font-medium text-dimmed data-[state=active]:text-base"
+            className="rounded hover:bg-base-4 data-[state=active]:bg-base-5 px-4 py-2 typography-2 font-medium text-dimmed data-[state=active]:text-base"
           >
             {value}
           </TabsPrimitive.Trigger>

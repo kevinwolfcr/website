@@ -61,8 +61,8 @@ export function SiteNav() {
               aria-current={item.href === activeHref || (!activeHref && i === 0) ? "page" : undefined}
               aria-label={item.label}
               className={cn(
-                "sm:w-7 sm:h-7 rounded-md sm:hover:bg-accent-4 flex items-center sm:justify-center gap-3 sm:text-dimmed sm:hover:text-base transition-colors",
-                "sm:aria-[current=page]:bg-accent-9 sm:aria-[current=page]:text-contrast",
+                "sm:w-7 sm:h-7 rounded sm:hover:bg-base-4 flex items-center sm:justify-center gap-3 sm:text-dimmed sm:hover:text-base transition-colors",
+                "sm:aria-[current=page]:bg-base-12 sm:aria-[current=page]:text-contrast",
               )}
               onClick={() => setIsExpanded(false)}
             >

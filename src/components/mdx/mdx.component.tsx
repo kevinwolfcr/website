@@ -28,7 +28,7 @@ export function MDX({ className, components, ...props }: MDXProps) {
             </h1>
           ),
           h2: ({ children, ...props }) => (
-            <h2 className="mt-7 border-b border-accent-6 pb-2 typography-7 text-base font-semibold" {...props}>
+            <h2 className="mt-7 border-b border-base-6 pb-2 typography-7 text-base font-semibold" {...props}>
               {children}
             </h2>
           ),
@@ -53,7 +53,7 @@ export function MDX({ className, components, ...props }: MDXProps) {
             </h6>
           ),
           p: ({ children, ...props }) => (
-            <p className="mt-5 typography-3" {...props}>
+            <p className="mt-5" {...props}>
               {children}
             </p>
           ),
@@ -74,7 +74,7 @@ export function MDX({ className, components, ...props }: MDXProps) {
             return (
               <Wrapper
                 href={href}
-                className="inline-flex items-center gap-1 font-medium text-base hover:text-accent transition-colors"
+                className="inline-flex items-center gap-1 font-medium text-base hover:underline transition-colors"
                 {...props}
               >
                 {children}
@@ -101,9 +101,7 @@ export function MDX({ className, components, ...props }: MDXProps) {
               </Code>
             )
           },
-          code: (props) => (
-            <code className="rounded bg-accent-3 px-[0.3em] py-[0.2em] text-[86%] text-accent" {...props} />
-          ),
+          code: (props) => <code className="rounded bg-base-3 p-[0.25em_0.5em] text-[0.8em] text-base" {...props} />,
           PackageManagerCommand: (props: Record<PackageManager, "string">) => (
             <PackageManagerCommand
               content={Object.entries(props).reduce(

@@ -18,7 +18,7 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" className={cn(inter.className, "scroll-smooth")}>
-      <body className="min-h-[100dvh] bg-accent-1 flex flex-col sm:flex-row antialiased typography-3 text-base selection:bg-accent-12 selection:text-accent-1">
+      <body className="min-h-[100dvh] bg-base-1 flex flex-col sm:flex-row antialiased typography-3 text-base selection:bg-base-12 selection:text-base-1">
         <Glass />
         {children}
         <Analytics />

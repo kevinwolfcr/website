@@ -7,10 +7,10 @@ import { forwardRef } from "react"
 
 import { cn } from "@/utils/ui"
 
-const paperVariants = cva("relative z-40 border border-accent-6/50 bg-accent-3/25", {
+const paperVariants = cva("relative z-40 border border-base-6/50 bg-base-3/50", {
   variants: {
     shape: {
-      rounded: "rounded-md",
+      rounded: "rounded",
       square: "",
     },
   },

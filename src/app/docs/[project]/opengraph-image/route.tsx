@@ -11,7 +11,7 @@ export async function GET(req: Request, { params: { project } }: { params: { pro
     if (!page || !page.meta.imgSrc || !page.meta.imgAlt) throw new Error(`Can not handle path.`)
 
     return ogImageResponse(
-      <OgImage className="flex-row items-center justify-center gap-8">
+      <OgImage className="flex-row items-center justify-center gap-5">
         <div className="w-[420px] flex flex-col gap-5">
           <span className="h-auto typography-9 font-bold">{page.meta.title || docs.title}</span>
           <span className="typography-5 text-dimmed">{page.meta.description || docs.description}</span>

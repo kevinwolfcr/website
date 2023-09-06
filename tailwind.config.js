@@ -25,13 +25,10 @@ export default {
   theme: {
     colors: {
       ...fromRadix(radix.slateDark, "base"),
-      ...fromRadix(radix.slateDarkA, "base-a"),
-      ...fromRadix(radix.skyDark, "accent"),
-      ...fromRadix(radix.skyDarkA, "accent-a"),
+      ...fromRadix(radix.mintDark, "accent"),
       ...fromRadix(radix.greenDark, "success"),
       ...fromRadix(radix.greenDarkA, "success-a"),
       ...fromRadix(radix.redDark, "error"),
-      ...fromRadix(radix.redDarkA, "error-a"),
     },
     spacing,
     minWidth: spacing,
@@ -110,8 +107,8 @@ export default {
       addUtilities({
         ".text-base": { color: theme("colors.base-12") },
         ".text-dimmed": { color: theme("colors.base-11") },
-        ".text-extradimmed": { color: theme("colors.base-10") },
-        ".text-contrast": { color: theme("colors.base-1") },
+        ".text-extradimmed": { color: theme("colors.base-8") },
+        ".text-contrast": { color: "black" },
         ".text-accent": { color: theme("colors.accent-11") },
       })
     }),

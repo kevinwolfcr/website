@@ -2,23 +2,26 @@ import type { HTMLAttributes } from "react"
 
 import Image from "next/image"
 
+import { cn } from "@/utils/ui"
+
 import { MDX } from "../mdx"
 
 export type HeroProps = HTMLAttributes<HTMLElement> & {
+  isBig?: boolean
   title: string
   subtitle: string
   imgSrc?: string
   imgAlt?: string
 }
 
-export function Hero({ title, subtitle, imgSrc, imgAlt, ...props }: HeroProps) {
+export function Hero({ isBig, title, subtitle, imgSrc, imgAlt, ...props }: HeroProps) {
   return (
     <header className="flex flex-col md:flex-row-reverse items-center gap-5" {...props}>
       {imgSrc && imgAlt ? (
         <Image priority src={imgSrc} alt={imgAlt} width={300} height={300} className="flex-shrink-0" />
       ) : null}
       <div className="flex-auto flex flex-col gap-3">
-        <h1 className="typography-8 font-bold">
+        <h1 className={cn(isBig ? "typography-9" : "typography-8", "font-bold")}>
           <MDX
             className="text-base"
             source={title}

@@ -38,7 +38,7 @@ export function DocsNav({ title, repo, menus }: DocsNavProps) {
           </Tooltip>
         </div>
       }
-      navClassName="w-full border-t border-accent-6/50 px-4 py-5"
+      navClassName="w-full border-t border-base-6/50 px-4 py-5 sm:gap-5"
     >
       {({ setIsExpanded }) =>
         menus.map((menu) => (

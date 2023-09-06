@@ -5,7 +5,7 @@ const projects = [{ id: "devtools", repo: "kevinwolfcr/devtools" }]
 
 async function getFile(url: URL) {
   try {
-    const request = await fetch(url)
+    const request = await fetch(url, { next: { revalidate: 60 } })
     return await request.text()
   } catch (err) {
     throw new Error(`Error fetching ${url.toString()}: ${err instanceof Error ? err.message : "Unknown error"}`)
@@ -49,6 +49,22 @@ export async function getDocsConfig(projectId: string) {
     ...config,
     pages,
   }
+}
+
+export async function getDocsParams() {
+  const params: { project: string; slug: string[] }[] = []
+
+  for (const project of projects) {
+    for (const menu of (await getDocsConfig(project.id))?.menus || []) {
+      for (const item of menu.items) {
+        params.push({ project: project.id, slug: menu.href.concat(item.href).replace(/^\//, "").split("/") })
+      }
+    }
+  }
+
+  console.log("params", params)
+
+  return params
 }
 
 // eslint-disable-next-line sort-exports/sort-exports

@@ -4,7 +4,7 @@ import { Fragment } from "react"
 import { Hero } from "@/components/hero"
 import { Main } from "@/components/main"
 import { MDX } from "@/components/mdx"
-import { getDocsConfig, getDocsPage } from "@/data/docs"
+import { getDocsConfig, getDocsPage, getDocsParams } from "@/data/docs"
 import { mergeMetadata, siteUrl } from "@/utils/seo"
 
 import { DocsNav } from "./_components/docs-nav"
@@ -13,7 +13,9 @@ type DocsPageProps = {
   params: { project: string; slug: string[] }
 }
 
-export const revalidate = 60
+export async function generateStaticParams(): Promise<DocsPageProps["params"][]> {
+  return await getDocsParams()
+}
 
 // eslint-disable-next-line sort-exports/sort-exports
 export async function generateMetadata({ params: { project, slug = [] } }: DocsPageProps) {

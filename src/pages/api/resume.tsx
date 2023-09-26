@@ -42,7 +42,7 @@ export default async function Resume(_req: NextApiRequest, res: NextApiResponse)
     <Document title={`${about.name}'s Résumé`} author={about.name} language="en">
       <Page size="A4" style={tw("bg-base-1 flex flex-col gap-[32px] p-[24px] font-[Inter] font-normal text-base")}>
         <View style={tw("flex flex-col")}>
-          <Text style={tw("text-[16px] font-semibold text-base")}>{about.name}</Text>
+          <Text style={tw("text-[16px] font-semibold text-accent")}>{about.name}</Text>
           <Text style={tw("mt-[4px] text-[12px] text-dimmed")}>{about.position}</Text>
           <Text style={tw("mt-[12px] text-[10px] leading-[1.5] text-dimmed")}>{about.description}</Text>
         </View>

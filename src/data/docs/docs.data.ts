@@ -1,7 +1,7 @@
 import matter from "gray-matter"
 import { z } from "zod"
 
-const projects = [{ id: "devtools", repo: "kevinwolfcr/devtools" }]
+const projects: { id: string; repo: string }[] = []
 
 async function getFile(url: URL) {
   try {
